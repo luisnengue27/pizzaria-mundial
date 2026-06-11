@@ -5,6 +5,9 @@ const HomeFuncionario = () => {
       
         <div className='container'>
             <MenuFuncionario/>
+            <p>
+                home page funcionario
+            </p>
         </div>
 
     )
