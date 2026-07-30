@@ -27,6 +27,17 @@ const AppRoutes = () => {
             path="/produtos"
             element={<ListarProdutos/>}
             />
+
+             <Route
+            path="/pizzaria/funcionario/home"
+            element={<HomeFuncionario/>}
+            />
+               <Route
+            path="/pizzaria/funcionario/produtos"
+            element={<ListarProdutos/>}
+            />
+          
+
            
         </Routes>
       </HashRouter>
