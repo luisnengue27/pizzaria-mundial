@@ -1,16 +1,17 @@
-import styles from "./MenuFuncionario.module.css"
+import styles from "./Menufuncionario.module.css"
 
-import { link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const MenuFuncionario = () => {
 
       return(
         <div><nav className={`navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100  ${styles.menu} `}>
-        <link
+        <Link
           to="/home"
           className={`navbar-brand ${styles.logo}`}
           >
-        </link>
+            Home
+        </Link>
 
         {/* Botão Hamburguer para telas menores */}
         <button
@@ -28,33 +29,33 @@ const MenuFuncionario = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto">
             <li className="nav-item active">
-             <link
+             <Link
              to="/produtos"
              className={`nav-link ${styles.itemMenu}`}
              >
               Produtos
 
-             </link>
+             </Link>
 
 
             </li>
             <li className="nav-item">
-               <link
+               <Link
              to="/categorias"
              className={`nav-link ${styles.itemMenu}`}
              >
               Categorias
 
-             </link>
+             </Link>
             </li>
             <li className="nav-item">
-                <link
+                <Link
              to="/estoque"
              className={`nav-link ${styles.itemMenu}`}
              >
               Estoque
 
-             </link>
+             </Link>
             </li>
 
             {/* Dropdown Menu */}

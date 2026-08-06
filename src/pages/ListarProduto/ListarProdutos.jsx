@@ -7,21 +7,21 @@ const ListarProdutos = () => {
         {
             id: 1,
             nome: "pizza de calabresa",
-            prevoVenda: 54.95,
+            precoVenda: 54.95,
             descricao: "pizza de calabresa com cebola e azeitona sem caroço"
         },
 
         {
             id: 2,
             nome: "pizza de queijo",
-            prevoVenda: 44.95,
+            precoVenda: 44.95,
             descricao: "pizza de queijo com cebola e azeitona com caroço"
         },
 
          {
             id: 3,
             nome: "pizza de muçarela",
-            prevoVenda: 53.85,
+            precoVenda: 53.85,
             descricao: "pizza de muçarela sem cebola e azeitona com caroço"
         }
 
@@ -44,9 +44,17 @@ const ListarProdutos = () => {
  </tr>
  </thead>
  <tbody>
- <tr>
- <td style={{ fontSize: "13px" }}></td>
- <td style={{ fontSize: "13px" }}>
+
+{ arrayProdutos.map((produto) => (
+    <tr key={produto.id}>
+<td style={{ fontSize: "13px"}}> {produto.nome}</td>
+<td style={{ fontSize: "13px"}}>
+    {
+        new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(produto.precoVenda)
+    }
 
  </td>
  <td style={{ fontSize: "13px" }}></td>
@@ -64,7 +72,10 @@ const ListarProdutos = () => {
  {/* Ícone de excluir */}
  </button>
  </td>
- </tr>
+ </tr> ) ) }
+
+
+ 
 
  </tbody>
  </table>
