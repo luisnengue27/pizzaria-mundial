@@ -1,4 +1,4 @@
-import styles from "./Menufuncionario.module.css"
+import styles from "./MenuFuncionario.module.css"
 
 import { Link } from "react-router-dom"
 
