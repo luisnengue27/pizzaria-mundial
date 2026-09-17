@@ -8,7 +8,9 @@ import {
 from "react-router-dom"
 import HomeFuncionario from "../pages/HomeFuncionario/HomeFuncionario"
 import ListarProdutos from "../pages/ListarProduto/ListarProdutos"
+import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
 import NovoProduto from "../pages/NovoProduto/NovoProduto"
+import EditarProduto from "../pages/EditarProduto/EditarProduto"
 
 
 const AppRoutes = () => {
@@ -40,12 +42,17 @@ const AppRoutes = () => {
 
             <Route
             path="/categorias"
-            element={<ListarProdutos/>}
+            element={<ListarCategoria/>}
             />
 
             <Route
              path="/produtos/novo"
              element={<NovoProduto/>}
+            />
+
+            <Route
+            path="/produtos/editar/:id"
+            element={<EditarProduto/>}
             />
 
            

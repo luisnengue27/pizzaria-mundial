@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
 import CredentialUser from "../../components/CredentialUser";
 import api from "../../services/api";
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
+import Modal from "../../components/Modal";
 
 const ListarProdutos = () => {
 
     const [produtos, setProdutos] = useState([]);
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [idProdutoExcluir, setIdProdutoExcluir] = useState(null)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         api
@@ -22,6 +28,29 @@ const ListarProdutos = () => {
                 );
             });
     }, []);
+
+    const openModal = (id) =>{
+        setIdProdutoExcluir(id)
+        setIsModalOpen(true)
+    }
+    const deleteProduto = async () => {
+         try {
+            const response = await api.delete(`/produtos/${idProdutoExcluir}`)
+            alert(response.data.message)
+
+            setProdutos((produtosAtuais) =>
+                produtosAtuais.filter(
+                    (produto) => produto.id !== idProdutoExcluir
+                )
+            )
+        } catch (error) {
+            alert(`nao foi possivel a exclusão do produto com id ${idProdutoExcluir}`)
+        }
+        setIsModalOpen(false)
+        }
+       
+  
+    
 
     return (
         <div className="container">
@@ -53,6 +82,7 @@ const ListarProdutos = () => {
                 }).format(produto.precoVenda)}
             </td>
 
+
             <td style={{ fontSize: "13px" }}>
                 {produto.descricao}
             </td>
@@ -62,16 +92,24 @@ const ListarProdutos = () => {
                 style={{ width: "100px" }}
             >
                 <button
-                    className="btn btn-sm btn-primary me-2"
-                >
-                    <i className="fas fa-edit"></i>
+                    className="btn btn-sm btn-primary me-2" onClick={() =>
+                        navigate(`/produtos/editar/${produto.id}`)
+                    }>
+                        
+                    <i className="fas fa-pencil-alt"></i>
                 </button>
+    
+
 
                 <button
                     className="btn btn-sm btn-danger"
+                    onClick={() => openModal(produto.id)}
                 >
                     <i className="fas fa-trash-alt"></i>
                 </button>
+
+
+
             </td>
         </tr>
     ))}
@@ -89,6 +127,14 @@ const ListarProdutos = () => {
                     {" "}Novo Produto
                 </Link>
             </div>
+
+<Modal
+ isOpen={isModalOpen}
+ onClose={()=> setIsModalOpen(false)}
+ onConfirm={deleteProduto}
+ />
+
+
         </div>
     );
 };
